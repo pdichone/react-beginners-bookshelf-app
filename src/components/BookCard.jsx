@@ -1,5 +1,5 @@
 /** @format */
-
+import 'react-loading-skeleton/dist/skeleton.css';
 function BookCard({ book }) {
   return (
     <div className="col-md-4 mb-3">
@@ -10,7 +10,6 @@ function BookCard({ book }) {
           alt={book.volumeInfo.title}
         />
         <div className="card-body">
-          <h5 className="card-title">{book.volumeInfo.title}</h5>
           <p className="card-text">{book.volumeInfo.authors.join(', ')}</p>
           <button className="btn btn-primary"> See More</button>
         </div>

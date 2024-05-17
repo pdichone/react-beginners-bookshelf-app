@@ -10,17 +10,20 @@ import BookList from './components/BookList';
 function App() {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('Java');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchBooks();
   }, [searchTerm]);
   const fetchBooks = async () => {
+    setLoading(true);
     const res = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
     );
     const data = await res.json();
     console.log('API DATA::', data.items);
     setBooks(data.items || []);
+    setLoading(false);
   };
 
   function handleSearch(query) {
@@ -31,7 +34,14 @@ function App() {
   return (
     <>
       <NavBar onSearch={handleSearch} />
-      <BookList books={books} />
+
+      {loading ? (
+        <p class="placeholder-glow display-3 text-body-secondary">
+          <span class="placeholder col-12">Loading</span>
+        </p>
+      ) : (
+        <BookList books={books} />
+      )}
 
       <Footer />
     </>
