@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import BookList from './components/BookList';
 import useBooks from './services/useBooks';
 import { useState } from 'react';
+import BookDetail from './components/BookDetail';
 
 function App() {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -16,7 +17,10 @@ function App() {
     setSearchTerm(query);
   }
   function handleSeeMore(book) {
-    setSelectedBook(book);
+    setSelectedBook(book.volumeInfo);
+  }
+  function handleCloseModal() {
+    setSelectedBook(null);
   }
 
   return (
@@ -31,9 +35,10 @@ function App() {
         <BookList books={books} onSeeMore={handleSeeMore} />
       )}
 
-      {selectedBook && <p>{selectedBook.volumeInfo.title}</p>}
-
       <Footer />
+      {selectedBook && (
+        <BookDetail book={selectedBook} onClose={handleCloseModal} />
+      )}
     </>
   );
 }
