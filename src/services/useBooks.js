@@ -30,9 +30,9 @@ function useBooks(initialQuery) {
     }
 
     // if you refresh the browser, the code below will kick in and abort the requests!
-    return () => {
-      controller.abort();
-    };
+    // return () => {
+    //   controller.abort();
+    // };
   }, [searchTerm]);
 
   return { books, loading, setSearchTerm };

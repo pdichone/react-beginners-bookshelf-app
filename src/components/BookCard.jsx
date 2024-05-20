@@ -1,6 +1,6 @@
 /** @format */
 import 'react-loading-skeleton/dist/skeleton.css';
-function BookCard({ book }) {
+function BookCard({ book, onSeeMore }) {
   return (
     <div className="col-md-4 mb-3">
       <div className="card">
@@ -11,7 +11,7 @@ function BookCard({ book }) {
         />
         <div className="card-body">
           <p className="card-text">{book.volumeInfo.authors.join(', ')}</p>
-          <button className="btn btn-primary"> See More</button>
+          <button onClick={() => onSeeMore(book)} className="btn btn-primary"> See More</button>
         </div>
       </div>
     </div>

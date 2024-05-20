@@ -2,11 +2,11 @@
 
 import BookCard from './BookCard';
 
-function BookList({ books }) {
+function BookList({ books, onSeeMore }) {
   return (
     <div className="row mt-5">
       {books.map((book) => (
-        <BookCard key={book.id} book={book} />
+        <BookCard key={book.id} book={book} onSeeMore={onSeeMore} />
       ))}
     </div>
   );
