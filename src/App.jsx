@@ -1,35 +1,17 @@
 /** @format */
 
-import { useEffect, useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import BookList from './components/BookList';
-import fetchBooks from './serices/api-client';
+import useBooks from './services/useBooks';
 
 function App() {
-  const [books, setBooks] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('Java');
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    fetchData();
-  }, [searchTerm]);
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const items = await fetchBooks(searchTerm);
-      setBooks(items);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  const { books, loading, setSearchTerm } = useBooks('java');
+  
   function handleSearch(query) {
     setSearchTerm(query);
-    console.log('Updated Search Term:', query);
   }
 
   return (
