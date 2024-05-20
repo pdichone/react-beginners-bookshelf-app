@@ -6,10 +6,7 @@ function BookCard({ book }) {
       <div className="card">
         <img
           className="card-img-top"
-          src={
-            book.volumeInfo.imageLinks.thumbnail ||
-            'https://placehold.co/600x400'
-          }
+          src={book.volumeInfo.imageLinks.thumbnail}
           alt={book.volumeInfo.title}
         />
         <div className="card-body">
